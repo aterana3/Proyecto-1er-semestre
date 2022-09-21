@@ -8,7 +8,7 @@ class Ejercicios {
         let dato2 = document.getElementById("data-2").value;
         let resultado = document.getElementById("resultado");
         if(!(dato2 == "" || dato2 == null)) {
-            dato1 = dato1.split(",");
+            dato1 = dato1.split(";");
             resultado.textContent = "";
             for(let i = 0;i<dato1.length;i++) {
                 if(dato1[i] == dato2) {
