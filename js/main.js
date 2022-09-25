@@ -1,9 +1,5 @@
 class Ejercicios {
 
-    divisores() {
-        
-    }
-
     perfecto() {
         let perfecto = document.getElementById("data-1").value
         let resp = document.getElementById("resultado")
@@ -50,21 +46,59 @@ class Ejercicios {
         }
     }
 
-    buscarArreglo() {
+    buscarCadena() {
         let dato1 = document.getElementById("data-1").value;
         let dato2 = document.getElementById("data-2").value;
         let resultado = document.getElementById("resultado");
-        if(!(dato2 == "" || dato2 == null)) {
+        if((dato1 != "") && (dato2 != "")) {
+            if(dato1.includes(dato2)) {
+                resultado.textContent=`${dato2} se encuentra en la cadena.`
+            } else {
+                resultado.textContent=`No se ha encontrado ${dato2} en la cadena.`
+            }
+        } else {
+            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+        }
+    }
+
+    promedio() {
+        let ingresado = document.getElementById("data-1").value
+        let res = document.getElementById("resultado")
+        let con = 0
+        if(ingresado != null) {
+            if(isNaN(ingresado)==true) {
+                let guardar = ingresado.split(";")
+                let lo= guardar.length
+                for(let i=0; i<lo; i++) {
+                    con= con + (parseFloat(guardar[i]))
+                }
+                con = Math.floor(con/lo)
+                res.textContent=`El promedio de el arreglo es de: ${con1.toString()}`
+            } else {
+                alert("ERROR. Ingrese una cadena con valores numericos")
+            }
+        } else {
+            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+        }
+    }
+
+    buscarArreglo() {
+        let dato1 = document.getElementById("data-1").value;
+        let dato2 = document.getElementById("data-2").value;
+        let resultado = document.getElementById("resultado")
+        let checker = false;
+        if((dato1 != "") && (dato2 != "")) {
             dato1 = dato1.split(";");
-            resultado.textContent = "";
             for(let i = 0;i<dato1.length;i++) {
                 if(dato1[i] == dato2) {
                     resultado.textContent = `Se ha encontrado el valor ${dato2} en la posicion ${i}`;
-                    break
-                } else if(dato1[i] != dato2 && i == (dato1.length-1)) {
-                    resultado.textContent = "No se ha encontrado ningun valor."
+                    checker = true;
                     break
                 }
+            }
+            if(!checker) {
+                resultado.textContent = `No se ha encontrado el valor ${dato2}`;
+                return;
             }
         } else {
             alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
@@ -93,14 +127,17 @@ function guardarOpcion(ejercicio) {
 function calcular() {
     let ejercicio = localStorage.getItem("ejer-realizar");
     switch(ejercicio) {
-        case "ejer-1":
-            instance.divisores();
-            break;
         case "ejer-4":
             instance.perfecto();
             break
         case "ejer-11":
             instance.contar_palabras();
+            break
+        case "ejer-15":
+            instance.buscarCadena();
+            break
+        case "ejer-17":
+            instance.promedio();
             break
         case "ejer-18":
             instance.buscarArreglo();
@@ -113,11 +150,12 @@ function calcular() {
 
 function limpiar() {
     let dato1 = document.getElementById("data-1");
+    let databox = document.querySelector(".data-box-2");
     let dato2 = document.getElementById("data-2");
     let resultado = document.getElementById("resultado");
     resultado.textContent = "El resultado se mostrará aquí..."
     dato1.value = ""
     dato2.value = ""
-    dato2.classList.remove('activo');
     localStorage.removeItem("ejer-realizar");
+    databox.classList.remove('activo');
 }
