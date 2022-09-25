@@ -4,7 +4,7 @@ class Ejercicios {
         let perfecto = document.getElementById("data-1").value
         let resp = document.getElementById("resultado")
         if((perfecto != "")) {
-            if(!isNaN(perfecto)) {
+            if(isNaN(perfecto) == false) {
                 perfecto = parseFloat(perfecto)
                 let ac = 0,  i = perfecto - 1, r = 0;
                 while (i > 0) {
@@ -21,6 +21,28 @@ class Ejercicios {
                 }
             } else {
                 alert("ERROR. Usted esta ingresado valores alfanumérico, vuelva a intentarlo con números")
+            }
+        } else {
+            alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
+        }
+    }
+
+    base2a10() {
+        let dato1 = document.getElementById("data-1").value;
+        let resultado = document.getElementById("resultado");
+        let num = dato1
+        let decimal=0,i=0,resto = 0;
+        if(dato1 != "") {
+            if(isNaN(dato1)==false) {
+                while (dato1 != 0) {
+                    resto = dato1 % 10;
+                    dato1 = parseInt(dato1/10);
+                    decimal = decimal + resto * Math.pow(2, i);
+                    ++i;
+                }
+                resultado.textContent = `El numero ${num} decimal es: ${decimal}` 
+            }else{
+                alert("ERROR. Usted solo ha ingresado valores alfanumérico, vuelva a intentarlo con numericos")
             }
         } else {
             alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
@@ -134,6 +156,9 @@ function calcular() {
     switch(ejercicio) {
         case "ejer-4":
             instance.perfecto();
+            break
+        case "ejer-9":
+            instance.base2a10();
             break
         case "ejer-11":
             instance.contar_palabras();
