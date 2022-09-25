@@ -65,8 +65,8 @@ class Ejercicios {
         let ingresado = document.getElementById("data-1").value
         let res = document.getElementById("resultado")
         let con = 0
-        if(ingresado != null) {
-            if(isNaN(ingresado)==true) {
+        if(ingresado != "") {
+            if(!isNaN(ingresado)) {
                 let guardar = ingresado.split(";")
                 let lo= guardar.length
                 for(let i=0; i<lo; i++) {
