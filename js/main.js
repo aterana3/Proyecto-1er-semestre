@@ -64,18 +64,23 @@ class Ejercicios {
     promedio() {
         let ingresado = document.getElementById("data-1").value
         let res = document.getElementById("resultado")
-        let con = 0
+        let con = 0, ignorar = 0;
         if(ingresado != "") {
-            if(!isNaN(ingresado)) {
-                let guardar = ingresado.split(";")
-                let lo= guardar.length
-                for(let i=0; i<lo; i++) {
-                    con= con + (parseFloat(guardar[i]))
+            let guardar = ingresado.split(";")
+            let lo = guardar.length
+            for(let i=0; i<lo; i++) {
+                if(!isNaN(guardar[i])) {
+                    con = con + (parseFloat(guardar[i]))
+                } else {
+                    ignorar = ignorar + 1;
                 }
+            }
+            if(con > 0) {
+                lo = lo - ignorar;
                 con = Math.floor(con/lo)
-                res.textContent=`El promedio de el arreglo es de: ${con1.toString()}`
+                res.textContent=`El promedio de el arreglo es de: ${con.toString()}`
             } else {
-                alert("ERROR. Ingrese una cadena con valores numericos")
+                alert("ERROR. Usted solo ha ingresado valores alfanumericos, vuelva a intentarlo con numeros")
             }
         } else {
             alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
