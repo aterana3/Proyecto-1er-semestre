@@ -23,7 +23,7 @@ class Ejercicios {
                 alert("ERROR. Usted esta ingresado valores alfanumérico, vuelva a intentarlo con números")
             }
         } else {
-            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+            alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
         }
     }
 
@@ -42,7 +42,7 @@ class Ejercicios {
                 alert("ERROR. Usted solo ha ingresado valores numericos, vuelva a intentarlo con palabras")
             }
         } else {
-            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+            alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
         }
     }
 
@@ -57,7 +57,7 @@ class Ejercicios {
                 resultado.textContent=`No se ha encontrado ${dato2} en la cadena.`
             }
         } else {
-            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+            alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
         }
     }
 
@@ -78,7 +78,7 @@ class Ejercicios {
                 alert("ERROR. Ingrese una cadena con valores numericos")
             }
         } else {
-            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+            alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
         }
     }
 
@@ -101,7 +101,7 @@ class Ejercicios {
                 return;
             }
         } else {
-            alert("ERROR. No se puede calcular o realizar el ejercicios, faltan parametros que establecer")
+            alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
         }
     }
 }
