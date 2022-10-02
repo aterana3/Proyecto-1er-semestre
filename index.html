@@ -16,23 +16,32 @@
         <h1>"Calculadora"</h1>
     </div>
     <div class="outer-wrapper">
+        <div class="inputProp">
+            <div class="content-box">
+                <p id="ejer-dialogo">N/A</p>
+                <div class="input-box">
+                    <input type="text" class="data-input" id="data-2" placeholder="Ingrese nuevo dato">
+                </div>
+                <div class="actions">
+                    <button class='resBtn' id='resEn' onclick="calcular()">Calcular</button>
+                    <button class='resBtn' id='resEx' onclick="cerrar(true)">Cerrar</button>
+                </div>
+            </div>
+        </div>
         <main class="main-wrapper">
             <div class="content-box">
                 <div class="result">
+                    <p id="ejer-actual">Ejercicio realizado: N/A</p>
                     <textarea class="area" rows="10" id="resultado">El resultado se mostrará aquí...</textarea>
                 </div>
                 <div class="menu">
                     <div class="screen">
                         <div class="income-box">
-                            <div class="data-box-1">
-                                <input type="text" id="data-1" placeholder="Ingrese dato">
-                            </div>
-                            <div class="data-box-2">
-                                <input type="text" id="data-2" placeholder="Ingrese nuevo dato">
+                            <div class="input-box">
+                                <input type="text" class="data-input" id="data-1" placeholder="Ingrese dato">
                             </div>
                         </div>
-                        <div class="actions">
-                            <button class="nav" onclick="calcular()">Calcular</button>
+                        <div class="clear">
                             <button class="nav" onclick="limpiar()">Limpiar</button>
                         </div>
                     </div>
