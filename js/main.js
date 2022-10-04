@@ -114,9 +114,9 @@ class Ejercicios {
     }
 
     base10a2() {
-        let dato1=document.getElementById("data-1").value
-        let respuesta=document.getElementById("resultado")
-        let array=[]
+        let dato1 = document.getElementById("data-1").value
+        let respuesta = document.getElementById("resultado")
+        let array = []
         let con=0
         if(dato1 != "") {
             if(isNaN(dato1)==false) {
@@ -186,16 +186,29 @@ class Ejercicios {
         let dato1 = document.getElementById("data-1").value;
         let resultado = document.getElementById("resultado");
         let num = dato1
-        let decimal=0,i=0,resto = 0;
+        let validos = [];
+        let decimal=0,i=0,resto = 0,longitud = 0, comprobar = true;
         if(dato1 != "") {
             if(isNaN(dato1)==false) {
-                while (dato1 != 0) {
-                    resto = dato1 % 10;
-                    dato1 = parseInt(dato1/10);
-                    decimal = decimal + resto * Math.pow(2, i);
-                    ++i;
+                longitud = dato1.length
+                for(let i = 0;i < longitud; i++){ 
+                    validos[i] = dato1.substring(i,i+1)
+                    if(validos[i] > 1) {
+                        comprobar = false;
+                        break;
+                    }
                 }
-                resultado.textContent = `El numero ${num} decimal es: ${decimal}` 
+                if(comprobar) {
+                    while (dato1 != 0) {
+                        resto = dato1 % 10;
+                        dato1 = parseInt(dato1/10);
+                        decimal = decimal + resto * Math.pow(2, i);
+                        ++i;
+                    }
+                    resultado.textContent = `El numero ${num} decimal es: ${decimal}` 
+                } else {
+                    alert("ERROR. Usted solo ha ingresado valores invalidos, vuelva a intentarlo con numericos")
+                }
             }else{
                 alert("ERROR. Usted solo ha ingresado valores alfanumérico, vuelva a intentarlo con numericos")
             }
@@ -208,28 +221,41 @@ class Ejercicios {
         let dato1 = document.getElementById("data-1").value;
         let resultado = document.getElementById("resultado");
         let num = dato1
-        let decimal=0,i=0,resto = 0;
+        let validos = [];
+        let decimal = 0, i = 0, resto = 0, longitud = 0,comprobar = true;
         if(dato1 != "") {
             if(isNaN(dato1)==false) {
-                while (dato1 != 0) {
-                    resto = dato1 % 10;
-                    dato1 = parseInt(dato1/10);
-                    decimal = decimal + resto * Math.pow(2, i);
-                    ++i;
-                }
-                let letras = ["A","B","C","D","E","F"];
-                let base = 16, reciduo = 0, digito = 0, base16 = "";
-                while(decimal > 0) {
-                    reciduo = decimal % base;
-                    if(reciduo > 9) {
-                        digito = letras[reciduo - 10]
-                    } else {
-                       digito = reciduo.toString();
+                longitud = dato1.length
+                for(let i = 0;i < longitud; i++){ 
+                    validos[i] = dato1.substring(i,i+1)
+                    if(validos[i] > 1) {
+                        comprobar = false;
+                        break;
                     }
-                    base16 = digito + base16;
-                    decimal = Math.trunc(decimal/ base);
                 }
-                resultado.textContent = `El numero ${num} hexadecimal es: ${base16}` 
+                if(comprobar) {
+                    while (dato1 != 0) {
+                        resto = dato1 % 10;
+                        dato1 = parseInt(dato1/10);
+                        decimal = decimal + resto * Math.pow(2, i);
+                        ++i;
+                    }
+                    let letras = ["A","B","C","D","E","F"];
+                    let base = 16, reciduo = 0, digito = 0, base16 = "";
+                    while(decimal > 0) {
+                        reciduo = decimal % base;
+                        if(reciduo > 9) {
+                            digito = letras[reciduo - 10]
+                        } else {
+                           digito = reciduo.toString();
+                        }
+                        base16 = digito + base16;
+                        decimal = Math.trunc(decimal/ base);
+                    }
+                    resultado.textContent = `El numero ${num} hexadecimal es: ${base16}` 
+                } else {
+                    alert("ERROR. Usted solo ha ingresado valores invalidos, vuelva a intentarlo con numericos")
+                }
             }else{
                 alert("ERROR. Usted solo ha ingresado valores alfanumérico, vuelva a intentarlo con numericos")
             }
@@ -336,7 +362,13 @@ class Ejercicios {
         let resultado = document.getElementById("resultado");
         if((dato1 != "") && (dato2 != "")) {
             if(dato1.includes(dato2)) {
-                resultado.textContent=`${dato2} se encuentra en la cadena.`
+                let posicion = 0, desde = 0;
+                let buscar = dato2;
+                do{ 
+                    posicion = dato1.indexOf(buscar, desde);
+                    desde = posicion + buscar.length
+                } while (posicion>=0)
+                resultado.textContent=`${dato2} se encuentra en la cadena posicion: ${desde}.`
             } else {
                 resultado.textContent=`No se ha encontrado ${dato2} en la cadena.`
             }
@@ -345,7 +377,7 @@ class Ejercicios {
         }
     }
 
-    mayorDeArreglo(){
+    mayorDeArreglo() {
         let ingresado = document.getElementById("data-1").value;
         let resultado = document.getElementById("resultado")
         let con = 0
@@ -423,21 +455,24 @@ class Ejercicios {
         let ingresado = document.getElementById("data-1").value;
         let ingresado2 = document.getElementById("data-2").value;
         let resultado = document.getElementById("resultado")
+        let newArray = [];
         if((ingresado != "") && (ingresado2 != "")) {
             ingresado = ingresado.split(";")
-            let posicion = ingresado.indexOf(ingresado2);
-            if(posicion != -1) {
-                ingresado.splice(posicion, 1);
-                resultado.textContent = "El arreglo queda: \n"
-                for(let i= 0; i < ingresado.length; i++)resultado.textContent += `[${ingresado[i]}] \n`;
-            } else {
-                resultado.textContent = `No se ha encontrado el valor ${ingresado2} para eliminar`;
+            for(let i = 0; i<ingresado.length; i++) {
+                if(ingresado[i] != ingresado2) {
+                    newArray[i] = ingresado[i]
+                }
+            }
+            resultado.textContent = "Array final: \n"
+            for(let i=0; i<newArray.length; i++) {
+                if(newArray[i] != null) {
+                    resultado.textContent += `[${newArray[i]}] \n`;
+                }
             }
         } else {
             alert("ERROR. No se puede calcular o realizar el ejercicio, faltan parametros que establecer")
         }
     }
-
 
     insertaElemento() {
         let dato1 = document.getElementById("data-1").value;
